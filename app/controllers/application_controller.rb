@@ -1,13 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, only: [:create, :update, :destroy, :new]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  include Pundit
+  protected
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-  private
-
-  def user_not_authorized
-    render "layouts/pundit_error"
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role_id])
   end
 end
