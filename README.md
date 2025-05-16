@@ -1,26 +1,7 @@
 ## README
 ______________________________________________________________________________________
-# Nah..ImaStay
-
-## Contributors
-![Clinton Forster](./docs/clinton.png)
-##### | Clinton Forster |        https://github.com/The4Star |
-
-![Emma Cullen](./docs/emmac.jpg)
-##### | Emma Cullen | https://github.com/ |
-
-![Kristy Lake](./docs/kristy.png)
-
-##### Kristy Lake | https://github.com/klps007|
-
-##### | Clinton Forster | Emma Cullen   | Kristy Lake |
-________________________________________________________________________________________________
-## Links
-
-##### URL - https://nahmastay.herokuapp.com/
-
-##### GitHub - https://github.com/Nah..ImaStay
-________________________________________________________________________________________________
+#CouchSurfing
+__________________________________________________________________________________________
 
 ### Section 1 - Description
 ### Section 2 - Design Documents
@@ -32,7 +13,7 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________
 ### Purpose 
 
-Nah..Imastay is a project that was created in a limited timeframe of 3 weeks to achieve a minimum viable product. It is a reciprocal platform where travelers host and stay at each others homes in return for karma Coins.
+Couchsurfing is a project that was created in a limited timeframe of 3 weeks to achieve a minimum viable product. It is a reciprocal platform where travelers host and stay at each others homes in return for karma Coins.
 
 Karma coins are earned by hosting travelers first and can then be saved up and spent on your own stays along your journey.
 
