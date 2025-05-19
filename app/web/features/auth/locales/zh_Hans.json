@@ -1,0 +1,261 @@
+{
+  "change_email_form": {
+    "title": "更改邮箱",
+    "current_email_message": "您当前的邮箱地址是：<2>{{email}}</2>。",
+    "success_message": "您的邮箱更改申请已提交。请查阅邮箱，完成更改。",
+    "current_password": "当前密码",
+    "new_email": "新邮箱地址"
+  },
+  "do_not_email": {
+    "title": "请勿向我发送邮件",
+    "status": {
+      "no_emails_enabled_message": "您当前已<1>禁用</1>邮件通知。",
+      "no_emails_disabled_message": "您当前已<1>启用</1>邮件通知。"
+    },
+    "action_button": {
+      "no_emails_enable_text": "禁用邮件通知",
+      "no_emails_disable_text": "重新启用邮件通知"
+    },
+    "caveat": "启用此设置后，您的账号将不会接收接待请求，但您仍会收到安全相关邮件（如重置密码的邮件）。您可能仍会收到简报邮件，可通过简报页脚中的链接取消订阅。"
+  },
+  "change_email_confirmation": {
+    "change_in_progress": "邮箱更改中……",
+    "success_message": "您的邮箱已经更改成功！",
+    "error_message": "更改邮箱出错了：{{message}}"
+  },
+  "change_password_form": {
+    "title": "更改密码",
+    "subtitle": "使用此表单重置您的登录密码。",
+    "confirm_password": "确认密码",
+    "password_changed_success": "您的新密码已设好，我们给您的邮箱发了一封通知邮件。",
+    "old_password": "之前的密码",
+    "new_password": "新的密码",
+    "password_mismatch_error": "密码不匹配。",
+    "user_logged_error": "如果您已登录，则无法重置密码。您可以在设置中更改密码，或登出后重置密码。",
+    "token_error": "处理密码重置令牌时出错，请重试。",
+    "reset_password_success": "您的密码已成功更改！",
+    "reset_password_error": "重置密码时出错：{{message}}"
+  },
+  "jail_set_password_form": {
+    "title": "设置密码",
+    "explanation": "您之前没有为账户设置过密码。请现在创建一个密码再继续操作。"
+  },
+  "reset_password_form": {
+    "enter_email": "输入您的用户名或邮箱地址",
+    "success_message": "检查您的邮箱，里面有重置密码的链接！"
+  },
+  "login_page": {
+    "title": "登录",
+    "header": "欢迎回家！",
+    "no_account_prompt": "还没有账号吗？<2>现在注册</2>",
+    "form": {
+      "username_field_label": "电子邮件/用户名",
+      "password_field_label": "密码",
+      "no_password_login_prompt": "请检查您的邮箱，获取登录链接！:)",
+      "remember_me": "记住我",
+      "forgot_password": "忘记密码？"
+    }
+  },
+  "basic_sign_up_form": {
+    "header": "开始旅程吧！",
+    "existing_user_prompt": "已经有账号了吗？<2>登录</2>",
+    "sign_up_agreement_explainer": "如果继续，将表示您已确认我们的 <2>服务条款</2>，其中也包括我们关于cookie、邮箱、数据信息的处理方法。"
+  },
+  "account_form": {
+    "header": "您的账号详情",
+    "username": {
+      "field_label": "用户名",
+      "required_error": "输入您的用户名",
+      "username_taken_error": "用户名已被占用。",
+      "validation_error": "用户名只可以用英文字母开头，之后跟随英文字母、数字或下划线_。"
+    },
+    "password": {
+      "field_label": "密码",
+      "required_error": "输入密码",
+      "validation_error": "密码必须介于8到256个字符，不可以是极其常见的组合。"
+    },
+    "birthday": {
+      "field_label": "生日",
+      "required_error": "输入您的生日",
+      "validation_error": "生日得是过去存在的一天。"
+    },
+    "hosting_status": {
+      "any": "任意",
+      "field_label": "接待状态",
+      "can_host": "可以接待",
+      "maybe": "可能可以接待",
+      "cant_host": "无法接待"
+    },
+    "gender": {
+      "field_label": "我是……",
+      "required_error": "请选择您的性别",
+      "man": "男性",
+      "non_binary": "非二元性别",
+      "woman": "女性"
+    },
+    "opt_in_newsletter": "订阅我们的社区更新偶尔通讯。",
+    "tos_prompt": "请您阅读并且接受<1></1>以继续。",
+    "tos_accept_label": "我接受服务条款。"
+  },
+  "basic_form": {
+    "name": {
+      "field_label": "您的名字",
+      "empty_error": "请输入您的名字",
+      "required_error": "此文本框不能为空。"
+    },
+    "email": {
+      "field_label": "邮箱",
+      "empty_error": "请输入一个有效的邮箱地址",
+      "required_error": "邮箱不能为空。"
+    }
+  },
+  "location": {
+    "field_label": "您的位置",
+    "validation_error": "请选择一个有效的位置。"
+  },
+  "community_guidelines_form": {
+    "header": "社区守则",
+    "guideline": {
+      "checkbox_label": "好的，我明白了",
+      "required_error": "所有必填项都需要填好"
+    }
+  },
+  "feedback_form": {
+    "header": "听听您怎么说",
+    "skip_step_text": "不感兴趣吗？<2>跳过这一步</2>"
+  },
+  "jail": {
+    "title": "需要更多信息",
+    "description": "请检查以下问题后继续。",
+    "terms_of_service_section": {
+      "description": "我们更新了服务条款。请阅读并接受新的<1></1>以继续。"
+    },
+    "location_section": {
+      "title": "请添加您的位置",
+      "submit_button": {
+        "active_text": "保存",
+        "inactive_text": "谢谢！"
+      },
+      "resubmit_button_text": "重新提交"
+    },
+    "mod_note_section": {
+      "title": "您已收到来自管理员的通知",
+      "description": "管理员向您发送了以下通知。请仔细阅读并确认您已阅读并理解该通知，然后再继续。",
+      "note_title": "收到管理员通知于 {{time}}：",
+      "acknowledge": "确认已阅读"
+    }
+  },
+  "logged_out_message": "您已登出。",
+  "sign_up_completed_title": "感谢您注册！",
+  "sign_up_need_verification_title": "快完成了，最后一步！",
+  "sign_up_resend_verification_email_help": "没有收到邮件？点击<2>这里重新发送验证链接</2>。",
+  "sign_up_resend_verification_done": "完成！我们已向您发送了另一封邮件。",
+  "sign_up_completed_prompt": "我们给您的邮箱发了一封带有确认链接的邮件，请点击链接，激活账号。",
+  "sign_up_confirmed_prompt": "完成啦！如果页面没有自动跳转，您可以直接登录账号。",
+  "unhandled_sign_up_state": "错误：未处理的注册流程状态。",
+  "login_prompt": "点击此处登录",
+  "about_us": "关于我们",
+  "introduction_subtitle": "永久免费。社区至上。不为营利。面向未来。",
+  "introduction_title": "加入我们，与我们一同成长",
+  "reset_password": "重置密码",
+  "account_settings_page": {
+    "title": "账户设置",
+    "gender_section": {
+      "title": "更改性别",
+      "explanation": "管理员非常乐意帮您更改您的性别标签。请联系support@couchers.org！"
+    },
+    "birth_date_section": {
+      "title": "修改生日",
+      "explanation": "管理员非常乐意帮您更改您的生日。请联系support@couchers.org！"
+    },
+    "timezone_section": {
+      "title": "时区和本地化",
+      "description": "您的时区是<1>{{timezone}}</1>。根据这个信息，您的当地时间大约是<4>{{time}}</4>。",
+      "explanation": "此时间和时区是根据您的家庭位置决定的。如果它不正确，请报告错误。"
+    },
+    "username_section": {
+      "title": "用户名",
+      "description": "您的用户名是<1>{{username}}</1>。",
+      "explanation": "您在创建账户时设置的用户名。"
+    }
+  },
+  "feature_preview": {
+    "title": "功能预览",
+    "explanation": "此页面允许您尝试尚在开发中的功能，这些功能尚未完全准备好供所有人使用。",
+    "disclaimer": "请注意，这些功能是实验性的。它们可能无法按预期工作，并且可能会随着我们的开发快速变化。欢迎在我们的论坛上提供反馈。如有任何错误，请向我们报告！",
+    "no_previews": {
+      "title": "暂无预览功能",
+      "explanation": "目前暂无活动的预览功能，请稍后再来查看！"
+    }
+  },
+  "active_logins": {
+    "heading": "当前登录",
+    "settings_page_text": "查看您的登录位置并退出其他会话",
+    "settings_page_link": "管理当前登录",
+    "description": "此页面列出了活跃登录会话。您可以通过单击登录旁边的按钮退出某个会话，或者滚动到底部并单击按钮退出除当前会话以外的所有会话。",
+    "login_header": "登录于 {{login_datetime}}",
+    "location": "靠近 <2>{{approximate_location}}</2>",
+    "last_activity": "上次活动 <2>{{last_activity_ago}}</2>",
+    "expiry": "过期时间 <1>{{expiry_datetime}}</1>",
+    "current_session": "这是您当前的会话。",
+    "log_out_of_session": "退出此会话",
+    "log_out_of_all_session": "退出其他所有会话"
+  },
+  "strong_verification": {
+    "title": "强验证",
+    "subtitle": "强验证是一项额外的安全功能，允许您通过生物护照验证出生日期和性别。",
+    "status": {
+      "enabled_message": "您当前已完成<1>强验证</1>。",
+      "disabled_message": "您当前未完成<1>强验证</1>。"
+    }
+  },
+  "unsubscribe": {
+    "title": "退订",
+    "button_text": "确认退订",
+    "error_message": "退订时出错：{{message}}",
+    "missing_payload_or_sig": "无效的URL"
+  },
+  "change_phone": {
+    "title": "电话号码",
+    "need_to_donate": "您需要<2>捐赠</2>后才能完成电话号码验证。",
+    "no_phone_description": "您的账户尚未添加电话号码。请在下方输入，我们会通过短信验证。",
+    "phone_label": "您的电话号码",
+    "add_button_text": "添加电话号码",
+    "add_success": "电话号码已添加。",
+    "phone_not_verified_description": "我们已向 <2>{{phone}}</2> 发送了一条验证码。请在下方输入验证码以验证您的号码：",
+    "code_label": "验证码",
+    "wrong_code": "验证码错误。",
+    "verify_button_text": "验证电话号码",
+    "verify_success": "电话号码已验证。",
+    "remove_phone_description": "您的当前电话号码是 <2>{{phone}}</2>。您可以在下方移除电话号码。",
+    "remove_button_text": "移除当前电话号码",
+    "remove_success": "电话号码已移除。",
+    "change_to_different_description": "如需更改为其他电话号码，请在下方输入。",
+    "change_button_text": "更改电话号码"
+  },
+  "delete_account": {
+    "request": {
+      "title": "删除账户",
+      "description": "如要删除您的账户，请按以下步骤操作。我们将向您发出确认邮件。",
+      "confirm_username_explanation": "您的用户名是 <1>{{username}}</1>，请在下方输入以确认删除账户。",
+      "confirm_username_label": "用户名确认",
+      "username_mismatch": "用户名不匹配。",
+      "reason_explanation": "请告诉我们删除账户的原因，以帮助我们改进平台。",
+      "reason_label": "账户删除原因",
+      "success_message": "已启动账户删除。请通过我们发给您的电子邮件完成账户删除。"
+    },
+    "missing_token": "错误：缺少令牌",
+    "confirm": {
+      "title": "确认账户删除",
+      "error_message": "确认账户删除失败：{{message}}",
+      "button_text": "确认删除账户",
+      "account_deleted": "账户已删除。感谢您使用Couchers.org！"
+    },
+    "recover": {
+      "title": "恢复您的Couchers.org账户",
+      "error_message": "恢复账户失败：{{message}}",
+      "button_text": "恢复您的账户",
+      "success": "您的账户已恢复，您可以重新登录了。我们很激动您愿意回来！"
+    }
+  }
+}

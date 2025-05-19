@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package org.couchers.jail;
+
+import "google/protobuf/empty.proto";
+
+import "annotations.proto";
+import "account.proto";
+
+service Jail {
+  option (auth_level) = AUTH_LEVEL_JAILED;
+
+  /*
+  Jail API
+
+  If the user hasn't completed necessary steps needed to use the app, they are
+  only allowed to hit the Jail API.
+
+  E.g. if signing up is incomplete, or they haven't agreed to TOS, etc.
+
+  These API functions are available only to signed-in users, but while other
+  APIs can't be used while Jailed, these can.
+  */
+  rpc JailInfo(google.protobuf.Empty) returns (JailInfoRes) {
+    // Get reason why the user is in jail, e.g. hasn't completed all sign-up
+    // steps, or needs to read something, etc
+  }
+
+  rpc AcceptTOS(AcceptTOSReq) returns (JailInfoRes) {
+    // Accept TOS
+  }
+
+  rpc SetLocation(SetLocationReq) returns (JailInfoRes) {
+    // Set the user's location
+    // If you're not jailed, do this with api.UpdateProfile!
+  }
+
+  rpc AcceptCommunityGuidelines(AcceptCommunityGuidelinesReq) returns (JailInfoRes) {
+    // Accept community guidelines
+  }
+
+  rpc AcknowledgePendingModNote(AcknowledgePendingModNoteReq) returns (JailInfoRes) {
+    // Acknowledges a mod note
+  }
+
+  rpc RespondToActivenessProbe(RespondToActivenessProbeReq) returns (JailInfoRes) {
+    // Either dismiss an activeness probe or say you aren't hosting
+  }
+}
+
+message JailInfoRes {
+  bool jailed = 1;
+
+  bool has_not_accepted_tos = 2;
+  bool has_not_added_location = 3;
+  bool has_not_accepted_community_guidelines = 4;
+
+  // mod notes
+  bool has_pending_mod_notes = 6;
+  // the actual mod notes, if any
+  // will be empty iff has_mode_notes is false
+  repeated org.couchers.api.account.ModNote pending_mod_notes = 7;
+
+  bool has_pending_activeness_probe = 8;
+}
+
+message AcceptTOSReq {
+  bool accept = 1;
+}
+
+message SetLocationReq {
+  string city = 1;
+  double lat = 2;
+  double lng = 3;
+  double radius = 4; // meters
+}
+
+message AcceptCommunityGuidelinesReq {
+  bool accept = 1;
+}
+
+message AcknowledgePendingModNoteReq {
+  uint64 note_id = 1;
+  // whether the user acknowledges the note or not
+  bool acknowledge = 2;
+}
+
+enum ActivenessProbeResponse {
+  ACTIVENESS_PROBE_RESPONSE_UNKNOWN = 0;
+  ACTIVENESS_PROBE_RESPONSE_STILL_ACTIVE = 1;
+  ACTIVENESS_PROBE_RESPONSE_NO_LONGER_ACTIVE = 2;
+}
+
+message RespondToActivenessProbeReq {
+  ActivenessProbeResponse response = 1;
+}

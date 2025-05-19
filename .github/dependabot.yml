@@ -1,0 +1,50 @@
+version: 2
+updates:
+
+  - package-ecosystem: "pip"
+    directory: "/app/backend"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "1.topic backend"
+      - "dependencies"
+    reviewers:
+      - "aapeliv"
+
+  - package-ecosystem: "pip"
+    directory: "/app/media"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "1.topic backend"
+      - "dependencies"
+    reviewers:
+      - "aapeliv"
+
+  - package-ecosystem: "npm"
+    directory: "/app/web"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "1.topic frontend"
+      - "dependencies"
+    reviewers:
+      - "aapeliv"
+      - "nabramow"
+
+  - package-ecosystem: "docker"
+    directories:
+      - "/app/backend"
+      - "/app/media"
+      - "/app/mobile/src"
+      - "/app/nginx"
+      - "/app/prometheus"
+      - "/app/proxy"
+      - "/app/web"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "1.topic devops"
+      - "dependencies"
+    reviewers:
+      - "aapeliv"

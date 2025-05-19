@@ -1,0 +1,12 @@
+# Migrate to black
+ed6cdae66d80d46c74b8f29d14c488831d5d6e5c
+# Prettier update to 2.3.0
+894400c72eaa863c876f7a7de74974377b918311
+# Rename 'frontend' to 'web'
+8190527bc34896901639350d300489e0c743334d
+# Remove trailing whitespace from lines
+6eda6fe7ed03b3c09fb855f92666f1fa2affe1a6
+# One TX per RPC
+9ed49242767f050a4f157c102e2c388b995f458b
+# Prettier update to 3.4.2
+81c0f8bf5494e8c92dce72e4baf98a2e8bf5906b

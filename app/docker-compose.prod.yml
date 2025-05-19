@@ -1,0 +1,183 @@
+services:
+  postgres:
+    image: postgis/postgis:17-3.5
+    command:
+      - postgres
+      # unfortunately the JIT slows down some geo stuff really badly
+      - -c
+      - jit=off
+      - -c
+      - max_connections=256
+      - -c
+      - ssl=on
+      - -c
+      - ssl_cert_file=/certs/live/db.couchers.org/fullchain.pem
+      - -c
+      - ssl_key_file=/certs/live/db.couchers.org/privkey.pem
+      - -c
+      - ssl_min_protocol_version=TLSv1.3
+    restart: always
+    env_file: postgres.prod.env
+    volumes:
+      - "./data/postgres/pgdata/:/var/lib/postgresql/data/"
+      - "./data/certs/:/certs/:ro"
+    ports:
+      - 5432:5432
+    networks:
+      - postgres_backend
+      - postgres_pgprom
+    shm_size: 256m
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 100m
+  backend:
+    image: registry.gitlab.com/couchers/couchers/backend
+    restart: always
+    env_file: backend.prod.env
+    volumes:
+      # auxiliary resources
+      - "./data/aux/:/app/aux/:ro"
+    expose:
+      - 1751
+      - 1753
+    depends_on:
+      - postgres
+      - jaeger
+    networks:
+      - backend_prometheus
+      - postgres_backend
+      - backend_media
+      - backend_envoy
+      - backend_jaeger
+  media:
+    image: registry.gitlab.com/couchers/couchers/media
+    restart: always
+    env_file: media.prod.env
+    volumes:
+      - "./data/media/uploads/:/uploads/"
+    expose:
+      - 5001
+    depends_on:
+      - backend
+    networks:
+      - backend_media
+      - media_nginx
+  envoy:
+    image: registry.gitlab.com/couchers/couchers/proxy
+    restart: always
+    expose:
+      - 8888
+      - 9901
+    networks:
+      - backend_envoy
+      - envoy_nginx
+      - envoy_prometheus
+  nginx:
+    image: registry.gitlab.com/couchers/couchers/nginx
+    restart: always
+    env_file: nginx.prod.env
+    volumes:
+      - "./data/certs/:/certs/"
+      - "./data/nginx/logs/:/var/log/nginx/"
+    ports:
+      - 80:80
+      - 443:443
+      - 8443:8443
+    networks:
+      - media_nginx
+      - envoy_nginx
+      - web_nginx
+  # generates prometheus metrics for the database
+  pgprom:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.15.0
+    restart: always
+    env_file: pgprom.prod.env
+    expose:
+      - 9187
+    networks:
+      - postgres_pgprom
+      - pgprom_prometheus
+  # generates prometheus metrics for the server!
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:v1.8.2
+    restart: always
+    command:
+      - "--path.rootfs=/host"
+      - "--collector.processes"
+    network_mode: host
+    pid: host
+    volumes:
+      - "/:/host:ro,rslave"
+  prometheus:
+    image: registry.gitlab.com/couchers/couchers/prometheus
+    restart: always
+    env_file: prometheus.prod.env
+    depends_on:
+      - backend
+      - envoy
+      - pgprom
+      - node_exporter
+    # this allows us to communicate with node_exporter which will be running directly on host networking
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - backend_prometheus
+      - pgprom_prometheus
+      - envoy_prometheus
+  web:
+    image: registry.gitlab.com/couchers/couchers/web
+    restart: always
+    expose:
+      - 3000
+    networks:
+      - web_nginx
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.60
+    restart: always
+    ports:
+      - "16686:16686"
+    expose:
+      - 4317
+    environment:
+      - MEMORY_MAX_TRACES=10000
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - backend_jaeger
+
+networks:
+  backend_prometheus:
+    driver: bridge
+    enable_ipv6: true
+  postgres_backend:
+    driver: bridge
+    enable_ipv6: true
+  backend_media:
+    driver: bridge
+    enable_ipv6: true
+  backend_envoy:
+    driver: bridge
+    enable_ipv6: true
+  media_nginx:
+    driver: bridge
+    enable_ipv6: true
+  envoy_nginx:
+    driver: bridge
+    enable_ipv6: true
+  web_nginx:
+    driver: bridge
+    enable_ipv6: true
+  postgres_pgprom:
+    driver: bridge
+    enable_ipv6: true
+  pgprom_prometheus:
+    driver: bridge
+    enable_ipv6: true
+  envoy_prometheus:
+    driver: bridge
+    enable_ipv6: true
+  backend_jaeger:
+    driver: bridge
+    enable_ipv6: true

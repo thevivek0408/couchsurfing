@@ -1,0 +1,11 @@
+backoff
+Flask
+grpcio
+pillow
+protobuf
+pynacl
+pytest
+pyvips
+ruff
+sentry-sdk
+uwsgi

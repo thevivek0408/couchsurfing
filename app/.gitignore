@@ -1,0 +1,6 @@
+/data/
+/pgdata/
+*.prod.env
+
+# protobuf descriptor sets
+descriptors.pb

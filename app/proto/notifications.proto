@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package org.couchers.notifications;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+import "annotations.proto";
+
+service Notifications {
+  option (auth_level) = AUTH_LEVEL_SECURE;
+
+  rpc GetNotificationSettings(GetNotificationSettingsReq) returns (GetNotificationSettingsRes);
+
+  rpc SetNotificationSettings(SetNotificationSettingsReq) returns (GetNotificationSettingsRes);
+
+  rpc ListNotifications(ListNotificationsReq) returns (ListNotificationsRes);
+
+  rpc MarkNotificationSeen(MarkNotificationSeenReq) returns (google.protobuf.Empty);
+
+  rpc MarkAllNotificationsSeen(MarkAllNotificationsSeenReq) returns (google.protobuf.Empty);
+
+  rpc GetVapidPublicKey(google.protobuf.Empty) returns (GetVapidPublicKeyRes);
+
+  rpc RegisterPushNotificationSubscription(RegisterPushNotificationSubscriptionReq) returns (google.protobuf.Empty);
+
+  rpc SendTestPushNotification(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+message GetNotificationSettingsReq {}
+
+message NotificationItem {
+  // e.g. "complete" for account recovery
+  string action = 1;
+  // e.g. "Password reset is completed"
+  string description = 2;
+  // whether this is user editable
+  bool user_editable = 3;
+  bool push = 4;
+  bool email = 5;
+  bool digest = 6;
+}
+
+message NotificationTopic {
+  // e.g. "badge"
+  string topic = 1;
+  // e.g. "Profile badges"
+  string name = 2;
+
+  // items in this topic
+  repeated NotificationItem items = 3;
+}
+
+message NotificationGroup {
+  // a set of notification topics grouped together, e.g. "Account Settings"
+  string heading = 1;
+  repeated NotificationTopic topics = 2;
+}
+
+message SingleNotificationPreference {
+  string topic = 1;
+  string action = 2;
+  // one of "push"/"email"/"digest"
+  string delivery_method = 3;
+  bool enabled = 4;
+}
+
+message GetNotificationSettingsRes {
+  bool do_not_email_enabled = 1;
+
+  bool email_digest_enabled = 2;
+  repeated NotificationGroup groups = 3;
+}
+
+message SetNotificationSettingsReq {
+  bool enable_do_not_email = 1;
+
+  // an arbitray list of these, they are applied consequtively, any errors will error out the whole thing
+  repeated SingleNotificationPreference preferences = 2;
+}
+
+message Notification {
+  int64 notification_id = 1;
+  google.protobuf.Timestamp created = 2;
+  string topic = 3;
+  string action = 4;
+  string key = 5;
+  string title = 6;
+  string body = 7;
+  string icon = 8;
+  string url = 9;
+
+  bool is_seen = 10;
+}
+
+message ListNotificationsReq {
+  bool only_unread = 3;
+
+  uint32 page_size = 1;
+  string page_token = 2;
+}
+
+message ListNotificationsRes {
+  repeated Notification notifications = 1;
+
+  string next_page_token = 2;
+}
+
+message MarkNotificationSeenReq {
+  int64 notification_id = 1;
+  bool set_seen = 2;
+}
+
+message MarkAllNotificationsSeenReq {
+  // mark all notifications up to and including this one as seen
+  int64 latest_notification_id = 1;
+}
+
+message GetVapidPublicKeyRes {
+  string vapid_public_key = 1;
+}
+
+message RegisterPushNotificationSubscriptionReq {
+  // the output of JSON.stirngify() on a ServiceWorkerRegistration.pushManager.subscribe
+  // see also: https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription
+  string full_subscription_json = 1;
+
+  // the browse user-agent, so we can tell the user what browser notifications are going to
+  string user_agent = 2;
+}

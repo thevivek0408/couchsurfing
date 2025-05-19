@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package unsubscribe;
+
+message DoNotEmail {
+  // do not email me, also turns hosting and "wants to meet" off
+}
+
+message UnsubscribeTopicKey {
+  // unsubscribe from a given topic for a given key
+  // e.g. a given event or group chat
+  string topic = 1;
+  string key = 2;
+}
+
+message UnsubscribeTopicAction {
+  // turn off email notifications for a given type of notification
+  // e.g. new events
+  string topic = 1;
+  string action = 2;
+}
+
+message UnsubscribePayload {
+  int64 user_id = 1;
+
+  oneof type {
+    UnsubscribeTopicKey topic_key = 3;
+    UnsubscribeTopicAction topic_action = 4;
+    DoNotEmail do_not_email = 5;
+  }
+}
