@@ -1,5 +1,5 @@
 
-Here’s a complete guide to **installing** the Couchers.org project on a new PC and **redeploying** an already deployed website.
+Here’s a complete guide to **installing** the Couchsurfing in your local pc and **redeploying** an already deployed website.
 
 ---
 
@@ -18,8 +18,8 @@ Before setting up the project, install:
 
 ### **2. Clone the Repository**
 ```sh
-git clone https://github.com/Couchers-org/couchers.git
-cd couchers/app
+git clone https://github.com/thevivek0408/couchsurfing.git
+cd couchsurfing/app
 ```
 
 ### **3. Compile Protocol Buffers**
