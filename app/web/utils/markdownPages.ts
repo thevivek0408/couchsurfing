@@ -14,13 +14,11 @@ into
 ['issues', 'communities-and-trust']
 */
 export function filenameToSlug(filename: string) {
-  // Normalize path separators for cross-platform compatibility
-  const normalized = filename.replace(/\\/g, "/");
-  if (!(normalized.startsWith("markdown/") && normalized.endsWith(".md"))) {
+  if (!(filename.startsWith("markdown/") && filename.endsWith(".md"))) {
     throw Error(`Invalid filename ${filename}`);
   }
-  return normalized
-    .substring("markdown/".length, normalized.length - ".md".length)
+  return filename
+    .substring("markdown/".length, filename.length - ".md".length)
     .split("/");
 }
 
