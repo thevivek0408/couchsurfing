@@ -6,7 +6,7 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "next build",
+    "build": "npm run generate:protos && next build",
     "dev": "next dev",
     "start": "yarn dev",
     "format": "prettier --write *",
@@ -17,7 +17,8 @@
     "serve": "next start",
     "test-ci": "tsc && cross-env NEXT_PUBLIC_API_BASE_URL=http://localhost:8888 CI=true TZ=UTC jest --runInBand --coverageReporters=\"cobertura\" --coverageReporters=\"lcov\" --reporters=\"default\" --reporters=\"jest-junit\" --coverage",
     "test": "cross-env NEXT_PUBLIC_API_BASE_URL=http://localhost:8888 TZ=UTC jest --watch",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "generate:protos": "sh ../generate_protos.sh"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
